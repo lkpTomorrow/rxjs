@@ -12,3 +12,12 @@
 
 <button (click)="getJsonpData();">jsonp获取数据</button>
 <hr>
+
+<button (click)="getAxiosData();">axios-get获取数据</button>
+<hr>
+<button (click)="getAxiosData2();">axios-rxjs-get获取数据</button>
+<ul>
+  <li *ngFor="let item of list2">{{item.title}}</li>
+</ul>
+
+<hr>

@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { resolve } from "path";
-import { reject } from "q";
+
 import { Observable } from "rxjs";
 
 @Injectable({

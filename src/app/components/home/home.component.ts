@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     this.$service
       .getRxjsOperatorData()
       .pipe(
-        filter((val, ind) => {
+        filter((val:any, ind) => {
           if (val % 2 === 0) {
             return true;
           }

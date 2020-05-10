@@ -1,3 +1,4 @@
+import { CustomHttpService } from './../../services/custom-http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/services/request.service';
@@ -11,7 +12,8 @@ export class NewsComponent implements OnInit {
 
   constructor(
     public $service: RequestService,
-    public http:HttpClient
+    public http:HttpClient,
+    public $customHttp:CustomHttpService
   ) { }
 
   ngOnInit() {
@@ -19,6 +21,7 @@ export class NewsComponent implements OnInit {
 
 
   public list:any[]=[]; // 渲染接口的列表
+  public list2:any[]=[]; // 渲染接口的列表
 
   // 调用接口获取数据
   getData(){
@@ -66,4 +69,33 @@ export class NewsComponent implements OnInit {
       console.log("jsonp请求的返回：",res);
     })
   }
+
+  // axios-promise方式
+  getAxiosData(){
+    let api= 'http://a.itying.com/api/productlist';
+    let stream=this.$customHttp.axiosGet(api);
+    console.log(stream);
+
+    stream.then(
+      res=>{
+        console.log('axios-get:',res);
+      }
+    )
+
+  }
+  // axios-rxjs
+  getAxiosData2(){
+    let api= 'http://a.itying.com/api/productlist';
+    let stream=this.$customHttp.axiosGet2(api);
+    console.log(stream);
+
+    stream.subscribe(
+      (res:any)=>{
+        console.log('axios-rxjx-get:',res);
+        this.list2=res.data.result||[];
+      }
+    )
+
+  }
+
 }

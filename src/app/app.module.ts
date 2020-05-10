@@ -1,3 +1,4 @@
+import { CustomHttpService } from './services/custom-http.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule, HttpClientJsonpModule} from '@angular/common/http'
@@ -24,7 +25,8 @@ import { from } from 'rxjs';
 
   ],
   providers: [
-    RequestService
+    RequestService,
+    CustomHttpService
   ],
   bootstrap: [AppComponent]
 })
