@@ -21,28 +21,38 @@ export class HomeComponent implements OnInit {
 
     // 回调函数方法 - ok
     /* const callbackData2 = this.$service.getCallBackData2(this.cbFn); */
-  
-
-    // promise处理异步
-
-    this.$service.getPromiseData()
-    .then(
-      res=>{
-        console.log('promise-data:',res);
-      }
-    )
 
 
-    // rxjs方法
-    this.$service.getRxjsData()
-    .subscribe(
-      res=>{
-        console.log('rxjs-data:',res);
-      }
-    )
+    /**
+     * promise处理异步
+     */
+    this.$service.getPromiseData().then(res => {
+      console.log("promise-data:", res);
+    });
 
+    // 是否多次执行？ => 只执行了一次
+    this.$service.getPromiseData2().then(res => {
+      console.log("promise-data-interval:", res);
+    });
+
+    /**
+     * rxjs方法
+     */
+    const subscriber = this.$service.getRxjsData().subscribe(res => {
+      console.log("rxjs-data:", res);
+    });
+
+    // 是否多次执行？ => 可以执行多次
+    const subscriber2 = this.$service.getRxjsData2().subscribe(res => {
+      console.log("rxjs-data-interval:", res);
+    });
+
+    // Observe 取消订阅
+    setTimeout(() => {
+      // subscriber.unsubscribe(); // 撤销
+    }, 1000);
   }
-  
+
   cbFn(params) {
     console.log(params);
   }
