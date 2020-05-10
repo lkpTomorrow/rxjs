@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { RequestService } from "src/app/services/request.service";
 
+import { filter, map } from "rxjs/operators";
+
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -21,7 +24,6 @@ export class HomeComponent implements OnInit {
 
     // 回调函数方法 - ok
     /* const callbackData2 = this.$service.getCallBackData2(this.cbFn); */
-
 
     /**
      * promise处理异步
@@ -51,6 +53,20 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       // subscriber.unsubscribe(); // 撤销
     }, 1000);
+
+    this.$service
+      .getRxjsOperatorData()
+      .pipe(
+        filter((val, ind) => {
+          if (val % 2 === 0) {
+            return true;
+          }
+        }),
+        map((val, ind) => val * val)
+      )
+      .subscribe(res => {
+        console.log("operator-data:", res);
+      });
   }
 
   cbFn(params) {

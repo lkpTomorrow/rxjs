@@ -97,4 +97,15 @@ export class RequestService {
       },3000)
     })
   }
+
+    // 操作符的使用：
+    getRxjsOperatorData(){
+      let count=0;
+      return new Observable(obeserver=>{
+        setInterval(()=>{
+          count++;
+          obeserver.next(count);
+        },1000)
+      })
+    }
 }
