@@ -1,0 +1,14 @@
+<h5>news页面</h5>
+
+<button (click)="getData();">get获取数据</button>
+<hr>
+
+<ul>
+  <li *ngFor="let item of list">{{item.title}}</li>
+</ul>
+
+<button (click)="login();">post提交数据</button>
+<hr>
+
+<button (click)="getJsonpData();">jsonp获取数据</button>
+<hr>
