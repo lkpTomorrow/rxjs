@@ -1,4 +1,7 @@
 import { Injectable } from "@angular/core";
+import { resolve } from "path";
+import { reject } from "q";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -26,7 +29,7 @@ export class RequestService {
       let name = "张三"; // 4
       console.log(4);
       return name;
-    }, 1000);
+    }, 2000);
 
     //3  遇到括号结束执行了，所以第四步是取不到值得
     console.log(3);
@@ -37,7 +40,37 @@ export class RequestService {
     setTimeout(() => {
       let name = "张三"; 
       cb(name);
-    }, 1000);
+    }, 2000);
 
   }
+
+  // promise
+  // new Promise(),里面是一个function，两个参数：resolve和reject;返回Promise对象；
+  // 成功：resolve()，失败：reject()
+  // 使用：.then()
+  getPromiseData(){
+    return new Promise((resolve,reject)=>{
+      
+      setTimeout(()=>{
+        let name= '李四-promise';
+        resolve(name);
+      },2000)
+
+
+    })
+  }
+
+  // rxjs方法
+  // new Observable(),里面是一个函数，参数observer；返回Observer对象；
+  // 成功:obeserver.next(); 失败：observer.error();
+  // 使用：.subscribe()
+  getRxjsData(){
+    return new Observable(obeserver=>{
+      setTimeout(()=>{
+        const name:string='王五-rxjs';
+        obeserver.next(name);
+      },3000)
+    })
+  }
+
 }

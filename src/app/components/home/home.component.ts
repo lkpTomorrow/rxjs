@@ -20,8 +20,27 @@ export class HomeComponent implements OnInit {
     console.log("callback-data:", callbackData); // callback-data: undefined */
 
     // 回调函数方法 - ok
-    const callbackData2 = this.$service.getCallBackData2(this.cbFn);
+    /* const callbackData2 = this.$service.getCallBackData2(this.cbFn); */
   
+
+    // promise处理异步
+
+    this.$service.getPromiseData()
+    .then(
+      res=>{
+        console.log('promise-data:',res);
+      }
+    )
+
+
+    // rxjs方法
+    this.$service.getRxjsData()
+    .subscribe(
+      res=>{
+        console.log('rxjs-data:',res);
+      }
+    )
+
   }
   
   cbFn(params) {
